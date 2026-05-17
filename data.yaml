@@ -1,0 +1,13 @@
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 5
+names: ['EDH', 'IPH', 'IVH', 'SAH', 'SDH']
+
+roboflow:
+  workspace: yolo-v5-h7oh7
+  project: brain-hemorrhage-detection-8f8o0
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/yolo-v5-h7oh7/brain-hemorrhage-detection-8f8o0/dataset/1

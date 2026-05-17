@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Hemorrhage Detection with YOLOv8</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="app-container">
+        <header class="app-header">
+            <h1 class="project-title">Brain Hemorrhage Detection</h1>
+            <div class="tech-stack">
+                <span class="pill">YOLOv8</span>
+                <span class="pill">Computer Vision</span>
+            </div>
+        </header>
+
+        <section class="main-card glass">
+            <div id="upload-stage" class="upload-stage">
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-content">
+                        <div class="upload-visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M12 4L8 8M12 4L16 8M4 16V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V16"/></svg>
+                        </div>
+                        <h2>Analyze New Scan</h2>
+                        <p>Drag and drop a CT scan or click to browse</p>
+                        <label for="file-input" class="action-btn">Select Image</label>
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loading-overlay" class="loading-overlay hidden">
+                <div class="loading-spinner"></div>
+                <p>Analyzing medical features...</p>
+            </div>
+
+            <div id="results-section" class="results-section hidden">
+                <div class="results-top">
+                    <button id="reset-btn" class="back-link">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        New Analysis
+                    </button>
+                    <h3>Diagnostic Report</h3>
+                </div>
+
+                <div class="results-layout">
+                    <div class="image-comparison">
+                        <div class="img-group">
+                            <label>Original Scan</label>
+                            <div class="img-frame">
+                                <img id="original-image" src="" alt="Original">
+                            </div>
+                        </div>
+                        <div class="img-group">
+                            <label>Detected Anomalies</label>
+                            <div class="img-frame highlight">
+                                <img id="annotated-image" src="" alt="Detections">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detections-panel">
+                        <div class="panel-header">Findings</div>
+                        <div id="detections-list" class="findings-list"></div>
+                        <div id="no-detections" class="empty-state hidden">
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <p>No hemorrhage detected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <p>Medical Research Purpose Only</p>
+        </footer >
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
