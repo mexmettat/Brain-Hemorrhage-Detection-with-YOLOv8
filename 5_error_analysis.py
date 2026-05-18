@@ -114,6 +114,9 @@ def main():
         matched_pred = set()
         
         # Match Predictions to GT
+        has_fp = False
+        has_fn = False
+        
         for p_idx, pbox in enumerate(pred_boxes):
             best_iou = 0
             best_g_idx = -1
@@ -133,13 +136,17 @@ def main():
                 matched_pred.add(p_idx)
                 matched_gt.add(best_g_idx)
             else:
-                if len(fps) < 6:
-                    fps.append({'img_path': img_path, 'preds': pred_boxes, 'gt': gt_boxes})
+                has_fp = True
                     
         for g_idx, gbox in enumerate(gt_boxes):
             if g_idx not in matched_gt:
-                if len(fns) < 6:
-                    fns.append({'img_path': img_path, 'preds': pred_boxes, 'gt': gt_boxes})
+                has_fn = True
+                
+        if has_fp and len(fps) < 6:
+            fps.append({'img_path': img_path, 'preds': pred_boxes, 'gt': gt_boxes})
+            
+        if has_fn and len(fns) < 6:
+            fns.append({'img_path': img_path, 'preds': pred_boxes, 'gt': gt_boxes})
 
     os.makedirs("error_analysis", exist_ok=True)
     
