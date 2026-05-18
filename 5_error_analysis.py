@@ -138,9 +138,9 @@ def main():
             else:
                 has_fp = True
                     
-        for g_idx, gbox in enumerate(gt_boxes):
-            if g_idx not in matched_gt:
-                has_fn = True
+        # Saf False Negative: Modelin hicbir tahminde bulunamadigi (len(pred_boxes) == 0) ama gercekte kanama olan (len(gt_boxes) > 0) durumlar
+        if len(pred_boxes) == 0 and len(gt_boxes) > 0:
+            has_fn = True
                 
         if has_fp and len(fps) < 6:
             fps.append({'img_path': img_path, 'preds': pred_boxes, 'gt': gt_boxes})
